@@ -9,32 +9,34 @@ This package implements two nodes:
 
 ###a. robucar\_ctrl (implemented in robucar\_control.py):  
 	
-this node offer the TCP client class that connects to Robucar server and publish three services :
+This node offer the TCP client class that connects to Robucar server and publish three services :
 
-**1. robu_control** uses the srv message type RobotCtrl
-**2. robu_Drive** uses the srv message type RobotDrive
-**3. robu_PTU** uses the srv message type RobotPTU
+**1. robu_control:** uses the srv message type RobotCtrl.
+
+**2. robu_Drive:** uses the srv message type RobotDrive.
+
+**3. robu_PTU:** uses the srv message type RobotPTU.
 
 **robu_control is the recommended way to control the RobuCar.**
 
 ###b. robucar\_mon (implemented in robucar\_monitor.py):
 
-this node publishes data read from the robucar the "robot_data" topic.
+This node publishes data read from the robucar the "robot_data" topic.
 
 -------------
 
 ##2. Functional diagram:
 
-this is a simple diagram explaining how this package operate.
+Here is a simple diagram explaining how this package operate.
 ![image](robucar_cdta.png)
 
 -------------
 
 ##3. Data:
 
-data read from the robucar is published in by the "robucar\_mon" node to the "robot_data" topic 
+Data read from the robucar is published in by the "robucar\_mon" node to the "robot_data" topic 
 
-data received is formated as follows:
+Data received is formated as follows:
 
 | variable        | python types | C types    | ROS msg type |
 |:--------------- |:------------ |:---------- |:------------ |
@@ -50,11 +52,13 @@ data received is formated as follows:
 | speed_pan       | int          | short int  | int16        |  
 | speed_tilt      | int          | short int  | int16        |  
 
-data sent to command the RobuCar & PTU is sent via services :
+Data sent to command the RobuCar & PTU is sent via services :
 
-**1.   robu_control** (used to set and send all the data)
-**2.  robu_Drive**   (used to set the speed and the steering angles while PTU data will be copyed from previous command)
-**3. robu_PTU** (used to set the PTU data while the rest will be copyed from previous command)
+**1.   robu_control:** used to set and send all the data.
+
+**2.  robu_Drive:**   used to set the speed and the steering angles while PTU data will be copyed from previous command
+
+**3. robu_PTU:** used to set the PTU data while the rest will be copyed from previous command
 
 **in all cases data sent to the robucar should contain all parameters**
 
