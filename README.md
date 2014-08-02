@@ -1,6 +1,9 @@
 Robucar CDTA 
 ============
 
+(Uses Catkin build system)
+(don't forget to chmod +x the files inside scripts)
+
 ##1. Introduction:
 
 ROS package to offer an interface to communicate with the CDTA's Robucar (send commmands for PTU and for Driving the Robot, and receiving data from robucar) 
@@ -17,7 +20,7 @@ This node offer the TCP client class that connects to Robucar server and publish
 
 **3. robu_PTU:** uses the srv message type RobotPTU.
 
-**robu_control is the recommended way to control the RobuCar.**
+**robu_control is the recommended way to control the RobuCar. as the other two are not well tested and add just for future hacking**
 
 ###b. robucar\_mon (implemented in robucar\_monitor.py):
 

@@ -1,23 +1,30 @@
 #!/usr/bin/env python
 
+##########
+## by: Ilyas M Abbas - ily4s.abbas@gmail.com 
+##########
+
 import struct
 import sys
 import socket
-from time import sleep
 import rospy
+from time import sleep
 from robucar.msg import RobotData
 
 
 class Monitoring(object):
 
-	"""docstring for Monitoring"""
+	"""This Class handles the TCP/IP connection as well as publishing data
+	to topic"""
 
 	def __init__(self):
+		'''The init method will establish a TCP server 
+		litening on socket 10.1.40.98:8000'''
 		super(Monitoring, self).__init__()
 		HOST = '10.1.40.98'
 		PORT = 8000               
 		self.s = None
-		self.data = ''
+		self.data = [0] * 11
 
 		for res in socket.getaddrinfo(HOST, PORT, socket.AF_UNSPEC, socket.SOCK_STREAM, 0, socket.AI_PASSIVE):
 			af, socktype, proto, canonname, sa = res
@@ -44,6 +51,8 @@ class Monitoring(object):
 				
 
 	def monitor(self):
+		''' This function starts the robucar_mon node and begin publishing
+		    the received data to robot_data using  RobotData msg'''
 		ctrl_def = "<dddddddhhhh"
 		pub = rospy.Publisher('robot_data', RobotData, queue_size=10)
 		rospy.init_node('robucar_mon', anonymous=True)
@@ -66,12 +75,13 @@ class Monitoring(object):
 			#r.sleep()
 
 	def close(self):
+		'''closes the tcp socket'''
 		self.conn.close()
 
 	def __del__(self):
-		""" override the default destructor """
+		""" override the default destructor : close the tcp socket before exit"""
 		self.close()
-		print "RobuPy stopped, socket closed"
+		print "RobuCar stopped, socket closed"
 
 
 if __name__ == '__main__':
