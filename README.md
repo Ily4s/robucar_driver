@@ -57,11 +57,11 @@ Data received is formated as follows:
 
 Data sent to command the RobuCar & PTU is sent via services :
 
-**1.   robu_control:** used to set and send all the data.
+**1.   robu_control:** takes all parameters .
 
-**2.  robu_Drive:**   used to set the speed and the steering angles while PTU data will be copyed from previous command
+**2.  robu_Drive:**   takes speed, angle\_forward, angle\_rea, 
 
-**3. robu_PTU:** used to set the PTU data while the rest will be copyed from previous command
+**3. robu_PTU:** takes position\_tilt, position\_pan, speed\_pan, speed\_tilt
 
 **in all cases data sent to the robucar should contain all parameters**
 
