@@ -1,8 +1,5 @@
-Robucar CDTA 
-============
-
-(Uses Catkin build system)
-(don't forget to chmod +x the files inside scripts)
+robucar_driver for CDTA's Robucar 
+=================================
 
 ##1. Introduction:
 
